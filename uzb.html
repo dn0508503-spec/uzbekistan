@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Uzbekistan News</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+
+    body{
+      background: linear-gradient(135deg,#021522,#004d61,#00796b);
+      background-size: 400% 400%;
+      animation: bgMove 15s ease infinite;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    @keyframes bgMove{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    .navbar{
+      background: rgba(0,0,0,0.4)!important;
+      backdrop-filter: blur(12px);
+      padding: 15px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .btn{
+      border-radius: 30px;
+      transition: 0.5s;
+      padding: 10px 25px;
+    }
+
+    .btn:hover{
+      transform: scale(1.1);
+    }
+
+    .btn-outline-success{
+      border-color: #00ffd0;
+      color: #00ffd0;
+    }
+
+    .btn-outline-success:hover{
+      background: #00ffd0;
+      color: black;
+    }
+
+    .btn-outline-secondary{
+      border-color: #66ffff;
+      color: #66ffff;
+    }
+
+    .btn-outline-secondary:hover{
+      background: #66ffff;
+      color: black;
+    }
+
+    /* CAROUSEL */
+
+    .carousel{
+      width: 92%;
+      margin: 30px auto;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,255,255,0.4);
+    }
+
+    .carousel img{
+      height: 650px;
+      object-fit: cover;
+     
+      transition: 1s;
+    }
+
+    .carousel img:hover{
+      transform: scale(1.03);
+    }
+
+    /* CARDS */
+
+    .card{
+      max-width: 950px;
+      margin: 35px auto;
+      border: none;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(18px);
+      color: white;
+      transition: 0.6s;
+      animation: fadeUp 1s ease;
+      box-shadow: 0 0 25px rgba(0,255,200,0.18);
+    }
+
+    .card:hover{
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 45px rgba(0,255,255,0.5);
+    }
+
+    .card img{
+      height: 100%;
+      object-fit: cover;
+      transition: 0.8s;
+    }
+
+    .card:hover img{
+      transform: scale(1.1);
+    }
+
+    .card-title{
+      font-size: 30px;
+      color: #00ffd5;
+      font-weight: bold;
+    }
+
+    .card-text{
+      font-size: 17px;
+      line-height: 1.7;
+      color: #d9ffff;
+    }
+
+    .text-body-secondary{
+      color: #8ffcff !important;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(70px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .carousel img{
+        height: 320px;
+      }
+
+      .card-title{
+        font-size: 24px;
+      }
+
+    }
+    /* FOOTER */
+
+.footer{
+  margin-top: 80px;
+  padding: 60px 20px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 30px rgba(0,255,255,0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-title{
+  font-size: 40px;
+  font-weight: bold;
+  color: #00ffd5;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(0,255,255,0.5);
+}
+
+.footer-text{
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #d8ffff;
+}
+
+.footer-copy{
+  margin-top: 25px;
+  color: #8ffcff;
+  font-size: 15px;
+}
+/* ВОЛК */
+
+.wolf-box{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+
+#wolf{
+  width: 170px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: wolfFloat 3s ease-in-out infinite;
+}
+
+#wolf:hover{
+  transform: scale(1.08);
+}
+
+@keyframes wolfFloat{
+
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-10px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+
+}
+
+/* МЯЧ */
+
+#ball{
+  width: 45px;
+  height: 45px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg');
+  background-size: cover;
+  position: absolute;
+  bottom: 20px;
+  left: -20px;
+  transition: 1s;
+}
+
+/* АНИМАЦИЯ УДАРА */
+
+.kick{
+  animation: kickBall 1s ease forwards;
+}
+
+@keyframes kickBall{
+
+  0%{
+    transform: translate(0,0) rotate(0deg);
+  }
+
+  100%{
+    transform: translate(-900px,-350px) rotate(1080deg);
+  }
+
+}
+
+  </style>
+
+</head>
+
+<body>
+
+ 
+
+<nav class="navbar bg-body-tertiary">
+
+  <div class="container-fluid justify-content-start">
+
+    <a href="index.html">
+      <button class="btn btn-outline-success me-2" type="button">
+        HOME
+      </button>
+    </a>
+
+    <a href="about.html">
+      <button class="btn btn-outline-secondary" type="button">
+        ABOUT
+      </button>
+    </a>
+
+  </div>
+
+</nav>
+
+  <!-- CAROUSEL -->
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+
+    </div>
+
+    <div class="carousel-inner">
+
+      <div class="carousel-item active">
+        <img src="https://www.gazeta.uz/media/img/2025/06/JNJFa717491457745856_l.webp" class="d-block w-100">
+      </div>
+
+      <div class="carousel-item">
+        <img src="https://www.gazeta.uz/media/img/2025/06/KuKfbg17491472617479_b.webp" class="d-block w-100">
+      </div>
+
+      <div class="carousel-item">
+        <img src="https://www.gazeta.uz/media/img/2025/06/vU6hHY17491476775353_b.webp" class="d-block w-100">
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+
+      <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+
+      <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+  </div>
+
+  <!-- CARD 1 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/wtDBed17491476784755_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Uzbekistan at the World Cup</h5>
+
+          <p class="card-text">
+            Uzbekistan national team officially qualified for the FIFA World Cup and made history for the country.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 2 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 2 -->
+
+
+<div class="wolf-box">
+
+  <img 
+    id="wolf"
+    src="Аннотация 2026-05-24 193151.png"
+    alt="..."
+  >
+
+  <div id="ball"></div>
+
+</div>
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/7xF6DV17491476761595_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Football Celebration</h5>
+
+          <p class="card-text">
+            Thousands of fans celebrated in Tashkent after the historical qualification victory.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 5 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 3 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/NOSta517491476771008_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Historic Achievement</h5>
+
+          <p class="card-text">
+            This became one of the biggest achievements in Uzbekistan sports history.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 8 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 4 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/OEDUMI17491476780166_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Captain Speech</h5>
+
+          <p class="card-text">
+            The captain thanked all supporters and promised to represent Uzbekistan proudly.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 10 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 5 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/vU6hHY17491476775353_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Fans Across Uzbekistan</h5>
+
+          <p class="card-text">
+            People celebrated in Samarkand, Andijan and Bukhara all night long.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 13 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 6 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/BxpGit17491476793878_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">New Football Era</h5>
+
+          <p class="card-text">
+            Experts believe Uzbekistan football is entering a new successful era.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 16 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 7 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/FgVuMU17491476802585_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Young Stars</h5>
+
+          <p class="card-text">
+            Young Uzbek football players are attracting attention from international clubs.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 20 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 8 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/IIfpFv17491476810922_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Massive Support</h5>
+
+          <p class="card-text">
+            Stadiums were full during qualification matches and fans created an amazing atmosphere.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 25 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 9 -->
+
+  <div class="card mb-3">
+
+    <div class="row g-0">
+
+      <div class="col-md-4">
+        <img src="https://www.gazeta.uz/media/img/2025/06/YOFr5917491476815377_b.webp" class="img-fluid rounded-start">
+      </div>
+
+      <div class="col-md-8">
+
+        <div class="card-body">
+
+          <h5 class="card-title">Dream Came True</h5>
+
+          <p class="card-text">
+            Millions of Uzbek fans waited years for this moment and now the dream became reality.
+          </p>
+
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 30 mins ago</small>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- FOOTER -->
+
+<footer class="footer">
+
+  <div class="container text-center">
+
+    <h2 class="footer-title">
+      Made By Dildora
+    </h2>
+
+    <p class="footer-text">
+        We believe in the strength, passion and future of Uzbekistan football. May our national team reach first place and make the whole world proud. Millions of hearts support our players every step of the way.
+    </p>
+
+    <p class="footer-copy">
+      © 2026 All Rights Reserved
+    </p>
+
+  </div>
+
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- ВСТАВЬ ПЕРЕД </body> -->
+
+<script>
+
+const wolf = document.getElementById("wolf");
+const ball = document.getElementById("ball");
+
+wolf.addEventListener("click", () => {
+
+  ball.classList.remove("kick");
+
+  void ball.offsetWidth;
+
+  ball.classList.add("kick");
+
+});
+
+</script>
+
+</body>
+
+</html>
